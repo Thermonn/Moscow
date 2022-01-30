@@ -4,10 +4,7 @@
     padding: 0;
     font-family: 'Poppins', sans-serif;
 }
-h1,
-p{
-    color: white;
-}
+
 
 :root {
     --black: #080404;
@@ -51,6 +48,7 @@ body {
     opacity: 0.4;
     transform: skewX(-10deg); 
     letter-spacing: 0.2px;
+    color: white;
 }
 
 
@@ -89,4 +87,23 @@ body {
     bottom: 0; 
     width: 100%; 
     margin: auto;
+}
+
+.mapboxgl-popup {
+    max-width: 300px;
+}
+.mapboxgl-popup-content {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+/*----- Different markers for different data types -----*/
+
+.photo-marker {
+    background-image: url('./icons/picture-image-svgrepo-com.svg');  /* subject to change, obviously. */
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
 }
