@@ -29,100 +29,28 @@
     nothing
 </section>
 
-<!--
-    <div class="map">
-    <img src="https://media.istockphoto.com/vectors/black-and-white-vector-city-map-of-moscow-with-well-organized-layers-vector-id913260296" alt="">
-    <img src="https://static8.depositphotos.com/1000209/1048/v/380/depositphotos_10486339-stock-illustration-moscow-map.jpg" alt="">
+
+<!-- Sidebars -->
+<!-- id has to be the same as in geojson -->
+<!-- closebutton onclick function has to match -->
+<div id="Zhukov" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeSidebarZhukov()">&times;</a>
+    <h2>Памятник Георгию Жукову</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, non tenetur! Nesciunt ipsam voluptatem quas repudiandae deleniti aliquam atque? Harum iste adipisci repudiandae eaque perferendis modi quia consectetur optio recusandae fugiat inventore officia vel error facilis exercitationem magnam velit neque, enim sequi soluta. Suscipit veritatis debitis, est possimus consequatur expedita.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora rerum soluta unde repudiandae, tempore ullam excepturi quasi dolorum, voluptatem dolores sunt amet obcaecati doloribus natus suscipit officiis expedita quo asperiores quis molestias est dolorem fuga?</p>
 </div>
----->
+
+<div id="VictoryMuseum" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeSidebarVictoryMuseum()">&times;</a>
+    <h2>Музей Победы</h2>
+</div>
+<!------>
 
 <div style='position:relative; height: 100vh; width: 100vw;'>
     <div id='map'></div>
 </div>
 
-
-<script>
-mapboxgl.accessToken = 'pk.eyJ1IjoidGhlcm1vbiIsImEiOiJja3k3ODlka2cwenRxMnZxY3kxd21kMzUxIn0.ZmjbPpuvTNPCnUazKleUvw';
-
-var map = new mapboxgl.Map({
-    container: 'map',
-    // style: 'mapbox://styles/thermon/ckyhpenshfulv15nu9wr3kwk8',
-    style: 'mapbox://styles/thermon/ckyszpiyw2s3w14lhb6h3tjfr',
-    center: [37.618423, 55.751244],
-    zoom: 9,
-    minZoom: 6
-});
-
-const moscowPhotos = {
-    "features": [
-        {
-        "type": "Feature",
-        "properties": {
-            "title": "Парк Горького",
-            "description": "Зенитные орудия в Парке Горького",
-            "image": "http://www.world-war.ru/wp-content/uploads/2015/06/41.jpg"
-        },
-        "geometry": {
-            "coordinates": [37.600265, 55.727964],
-            "type": "Point"
-        },
-        "id": "346b45f8fad60c265d9d798d1dbdb18e"
-        },
-        {
-        "type": "Feature",
-        "properties": {
-            "title": "Большой Театр",
-            "image": "http://www.world-war.ru/wp-content/uploads/2015/06/271.jpg",
-            "description": "Маскируют Большой Театр (1941)"
-        },
-        "geometry": {
-            "coordinates": [37.618541, 55.760239],
-            "type": "Point"
-        },
-        "id": "a29a54372736b2a7ecf8cd556dc375f7"
-        }
-    ],
-    "type": "FeatureCollection"
-};
-
-
-for (const feature of moscowPhotos.features) {
-  // create a HTML element for each feature
-  const el = document.createElement('div');
-  el.className = 'photo-marker';
-  
-  new mapboxgl.Marker(el)
-    .setLngLat(feature.geometry.coordinates)
-    .setPopup(
-    new mapboxgl.Popup({ offset: 25 }) // add popups
-      .setHTML(
-        `<h3>${feature.properties.title}</h3>
-        <img src="${feature.properties.image}" style="max-width: 200px;"></img>
-        <p>${feature.properties.description}</p>`
-      )
-    )
-    .addTo(map);
-}
-
-
-
-// map.on('click', (event) => {
-// const features = map.queryRenderedFeatures(event.point, {
-//     layers: ['moscow-points']
-// });
-// if (!features.length) {
-//     return;
-// }
-// const feature = features[0];
-
-// const popup = new mapboxgl.Popup({ offset: [0, -15] })
-// .setLngLat(feature.geometry.coordinates)
-// .setHTML(
-//     `<img style="max-width: 100%;" src="${feature.properties.image}"></img><p style="color: black;">${feature.properties.description}</p>`
-// )
-// .addTo(map);
-// });
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
