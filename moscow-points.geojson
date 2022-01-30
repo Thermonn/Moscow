@@ -1,0 +1,27 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "image": "http://www.world-war.ru/wp-content/uploads/2015/06/41.jpg",
+          "description": "Зенитные орудия в Парке Горького"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [37.60019302368164, 55.727883425773065]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+           "image": "http://www.world-war.ru/wp-content/uploads/2015/06/48.jpg",
+           "description": "Зенитные орудия в Парке Горького"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [37.62004405260086, 55.732240733201635]
+        }
+      }
+    ]
+  }
