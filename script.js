@@ -99,20 +99,22 @@ for (const feature of moscowSidebar.features) {
 
 // Open/close functions :)
 
+//TODO: make function that closes sideBar if user clicks outside of element
+
 function openSidebarZhukov() {
-    document.getElementById("Zhukov").style.width = "450px";
+    document.getElementById("Zhukov").style.left = "0";
     // const smoke = document.createElement('div');
     // smoke.style.boxShadow = "0 0 100vw 0 rgba(0,0,0,0.4)";
 }
 function closeSidebarZhukov() {
-    document.getElementById("Zhukov").style.width = "0";
+    document.getElementById("Zhukov").style.left = "-450px";
 }
 
 function openSidebarVictoryMuseum() {
-    document.getElementById("VictoryMuseum").style.width = "450px";
+    document.getElementById("VictoryMuseum").style.left = "0";
 }
 function closeSidebarVictoryMuseum() { 
-    document.getElementById("VictoryMuseum").style.width = "0"; 
+    document.getElementById("VictoryMuseum").style.left = "-450px"; 
 }
 
 
