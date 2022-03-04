@@ -12,7 +12,7 @@ var map = new mapboxgl.Map({
 map.on('load', () => {
   map.dragRotate.disable();
   map.keyboard.disableRotation();
-  map.scrollZoom.disable();  // !!!!?????
+  //map.scrollZoom.disable();  // !!!!?????
 });
 
 const moscowPhotos = {
