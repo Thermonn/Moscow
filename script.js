@@ -2,7 +2,6 @@ mapboxgl.accessToken = 'pk.eyJ1IjoidGhlcm1vbiIsImEiOiJja3k3ODlka2cwenRxMnZxY3kxd
 
 var map = new mapboxgl.Map({
     container: 'map',
-    // style: 'mapbox://styles/thermon/ckyhpenshfulv15nu9wr3kwk8',
     style: 'mapbox://styles/thermon/ckyszpiyw2s3w14lhb6h3tjfr',
     center: [37.618423, 55.751244],
     zoom: 9,
@@ -88,7 +87,7 @@ for (const feature of moscowSidebar.features) {
     const el = document.createElement('div');
     el.classList.add('person-marker');
     // el.id = `${feature.id}`;
-    el.setAttribute("onclick", "openSidebar" + `${feature.id}` + "()"); // find different solution later, as this requires many functions that do the same thing
+    el.setAttribute("onclick", `openSidebar${feature.id}()`); // find different solution later, as this requires many functions that do the same thing
     
     new mapboxgl.Marker(el)
       .setLngLat(feature.geometry.coordinates)
