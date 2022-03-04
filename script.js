@@ -1,11 +1,18 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoidGhlcm1vbiIsImEiOiJja3k3ODlka2cwenRxMnZxY3kxd21kMzUxIn0.ZmjbPpuvTNPCnUazKleUvw';
 
 var map = new mapboxgl.Map({
-    container: 'map',
+    container: 'map',  // id of the html element
     style: 'mapbox://styles/thermon/ckyszpiyw2s3w14lhb6h3tjfr',
     center: [37.618423, 55.751244],
+    cooperativeGestures: true,  // WHY DOESNT IT WORK???!
     zoom: 9,
     minZoom: 6
+});
+
+map.on('load', () => {
+  map.dragRotate.disable();
+  map.keyboard.disableRotation();
+  map.scrollZoom.disable();  // !!!!?????
 });
 
 const moscowPhotos = {
@@ -65,10 +72,20 @@ const moscowSidebar = {
 };
 
 
+const sidebars = document.querySelectorAll(".sidenav")
+
+
 for (const feature of moscowPhotos.features) {
   // create a HTML element for each feature
   const el = document.createElement('div');
   el.className = 'photo-marker';
+
+  // this might be dumb 
+  el.addEventListener("click", function() {
+    for (let sbar of sidebars) {
+      sbar.style.left = "-450px";  // close all sidebars
+    }
+  }); 
   
   new mapboxgl.Marker(el)
     .setLngLat(feature.geometry.coordinates)
@@ -84,10 +101,16 @@ for (const feature of moscowPhotos.features) {
 }
 
 for (const feature of moscowSidebar.features) {
+    const parent = document.getElementById(`${feature.id}`);  // ! the sidebar. This is why html id must be the same as geojson id.
     const el = document.createElement('div');
     el.classList.add('person-marker');
-    // el.id = `${feature.id}`;
-    el.setAttribute("onclick", `openSidebar${feature.id}()`); // find different solution later, as this requires many functions that do the same thing
+
+    el.addEventListener("click", function() {
+        for (let sbar of sidebars) {
+          sbar.style.left = "-450px";  // close all sidebars
+        }
+        parent.style.left = "0";  // open specific sidebar
+    }); 
     
     new mapboxgl.Marker(el)
       .setLngLat(feature.geometry.coordinates)
@@ -96,25 +119,20 @@ for (const feature of moscowSidebar.features) {
 }
 
 
-// Open/close functions :)
-
-//TODO: make function that closes sideBar if user clicks outside of element
-
-function openSidebarZhukov() {
-    document.getElementById("Zhukov").style.left = "0";
-    // const smoke = document.createElement('div');
-    // smoke.style.boxShadow = "0 0 100vw 0 rgba(0,0,0,0.4)";
-}
-function closeSidebarZhukov() {
-    document.getElementById("Zhukov").style.left = "-450px";
+// XBtn close function
+const closeBtns = document.querySelectorAll(".closebtn");
+for (const XBtn of closeBtns) {
+    XBtn.addEventListener("click", function() {
+        XBtn.parentElement.style.left = "-450px"
+    });
 }
 
-function openSidebarVictoryMuseum() {
-    document.getElementById("VictoryMuseum").style.left = "0";
-}
-function closeSidebarVictoryMuseum() { 
-    document.getElementById("VictoryMuseum").style.left = "-450px"; 
-}
+// Close sidebars on scroll (to avoid weird behaviour)
+window.addEventListener('scroll', function(e) {
+  for (let sbar of sidebars) {
+    sbar.style.left = "-450px"; 
+  }
+});
 
 
 
