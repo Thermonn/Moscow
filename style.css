@@ -21,6 +21,7 @@ body {
     background-color: rgba(0, 0, 0);
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url(https://gvwire.com/wp-content/uploads/2020/10/wildfires.jpg);
     background-position: center;
+    background-attachment: fixed;
     background-size: cover;
     position: relative;
 
