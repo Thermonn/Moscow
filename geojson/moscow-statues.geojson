@@ -1,0 +1,53 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {},
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            37.61683378368616,
+            55.755838200850675
+          ]
+        },
+        "id": "Zhukov"
+      },
+      {
+        "type": "Feature",
+        "properties": {},
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            37.61616826057434,
+            55.754817688690295
+          ]
+        },
+        "id": "UnknownSoldier"
+      },
+      {
+        "type": "Feature",
+        "properties": {},
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            37.58125906545352,
+            55.776515670545436
+          ]
+        },
+        "id": "SlavGoodbye"
+      },
+      {
+        "type": "Feature",
+        "properties": {},
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            37.50700235366821,
+            55.731698550554896
+          ]
+        },
+        "id": "VictoryMonument"
+      }
+    ]
+  }

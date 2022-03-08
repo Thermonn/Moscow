@@ -1,0 +1,77 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.5045132637,
+          55.7306866575
+        ]
+      },
+      "id": "VictoryMuseum"
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.18302631378174,
+          55.83290911147952
+        ]
+      },
+      "id": "AirForceMuseum"
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.617085576057434,
+          55.7848841438147
+        ]
+      },
+      "id": "ArmedForcesMuseum"
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.52959728240967,
+          56.055051902459155
+        ]
+      },
+      "id": "T34Museum"
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          36.821558475494385,
+          55.57908456883291
+        ]
+      },
+      "id": "MemoryLaneMuseum"
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.467273473739624,
+          55.676341230265706
+        ]
+      },
+      "id": "OboronyMuseum"
+    }
+  ]
+}

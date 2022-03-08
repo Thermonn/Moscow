@@ -1,0 +1,44 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Парк Горького",
+        "description": "Зенитные орудия в Парке Горького",
+        "image": "http://www.world-war.ru/wp-content/uploads/2015/06/41.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          37.600265,
+          55.727964
+        ],
+        "type": "Point"
+      },
+      "id": "346b45f8fad60c265d9d798d1dbdb18e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Большой Театр",
+        "image": "http://www.world-war.ru/wp-content/uploads/2015/06/271.jpg",
+        "description": "Маскируют Большой Театр (1941)"
+      },
+      "geometry": {
+        "coordinates": [
+          37.618541,
+          55.760239
+        ],
+        "type": "Point"
+      },
+      "id": "a29a54372736b2a7ecf8cd556dc375f7"
+    }
+  ],
+  "type": "FeatureCollection"
+}
+
+
+
+
+
+  
+    
