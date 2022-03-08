@@ -1,28 +1,44 @@
+//// Main page ////
+
+$(document).ready(function() {
+  $(window).scroll(function() {
+    var scroll = $(window).scrollTop();
+    if (scroll >= 1) {
+      $('.down-arrow').addClass('fade');
+    } else{
+      $('.down-arrow').removeClass('fade');
+    }
+  })
+});
+
+
+///// Map /////
+
 mapboxgl.accessToken = 'pk.eyJ1IjoidGhlcm1vbiIsImEiOiJja3k3ODlka2cwenRxMnZxY3kxd21kMzUxIn0.ZmjbPpuvTNPCnUazKleUvw';
 
 var map = new mapboxgl.Map({
-    container: 'map',  // id of the html element
+    container: 'map',  
     style: 'mapbox://styles/thermon/ckyszpiyw2s3w14lhb6h3tjfr',
     center: [37.618423, 55.751244],
-    cooperativeGestures: true,  // WHY DOESNT IT WORK???!
+    cooperativeGestures: true,
     zoom: 9,
-    minZoom: 6
+    minZoom: 6.5
 });
 
 map.on('load', () => {
   map.dragRotate.disable();
   map.keyboard.disableRotation();
-  //map.scrollZoom.disable();  // !!!!?????
 });
 
-const moscowPhotos = {
+const moscowPopups = {
     "features": [
         {
         "type": "Feature",
         "properties": {
             "title": "Парк Горького",
             "description": "Зенитные орудия в Парке Горького",
-            "image": "http://www.world-war.ru/wp-content/uploads/2015/06/41.jpg"
+            "image": "http://www.world-war.ru/wp-content/uploads/2015/06/41.jpg",
+            "hover": ""
         },
         "geometry": {
             "coordinates": [37.600265, 55.727964],
@@ -47,6 +63,8 @@ const moscowPhotos = {
     "type": "FeatureCollection"
 };
 
+/* All the points that open a sidebar.
+ * Not necessarily same category!  */
 const moscowSidebar = {
     "type": "FeatureCollection",
     "features": [
@@ -68,6 +86,7 @@ const moscowSidebar = {
         },
         "id": "VictoryMuseum"
       }
+
     ]
 };
 
@@ -75,16 +94,20 @@ const moscowSidebar = {
 const sidebars = document.querySelectorAll(".sidenav")
 
 
-for (const feature of moscowPhotos.features) {
+for (const feature of moscowPopups.features) {
   // create a HTML element for each feature
   const el = document.createElement('div');
-  el.className = 'photo-marker';
-
-  // this might be dumb 
+  el.classList.add('marker', 'photo-marker');
+  el.setAttribute("title", `${feature.properties.hover}`)  // <- HOVER THING
+   
   el.addEventListener("click", function() {
     for (let sbar of sidebars) {
       sbar.style.left = "-450px";  // close all sidebars
     }
+    map.easeTo({  // Fly to clicked marker 
+      center: feature.geometry.coordinates, 
+      zoom: 11
+    });
   }); 
   
   new mapboxgl.Marker(el)
@@ -103,13 +126,18 @@ for (const feature of moscowPhotos.features) {
 for (const feature of moscowSidebar.features) {
     const parent = document.getElementById(`${feature.id}`);  // ! the sidebar. This is why html id must be the same as geojson id.
     const el = document.createElement('div');
-    el.classList.add('person-marker');
+    el.classList.add('marker', 'person-marker');
 
     el.addEventListener("click", function() {
         for (let sbar of sidebars) {
           sbar.style.left = "-450px";  // close all sidebars
         }
         parent.style.left = "0";  // open specific sidebar
+
+        map.easeTo({  // Fly to clicked marker 
+          center: feature.geometry.coordinates, 
+          zoom: 11
+        });
     }); 
     
     new mapboxgl.Marker(el)
