@@ -1,5 +1,6 @@
 /*  Typography  */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
@@ -19,9 +20,10 @@ body {
     min-height: 100vh;
     width: 100%;
     background-color: rgba(0, 0, 0);
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url(https://gvwire.com/wp-content/uploads/2020/10/wildfires.jpg);
-    background-position: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), 
+                      url(https://gvwire.com/wp-content/uploads/2020/10/wildfires.jpg);
     background-attachment: fixed;
+    background-position: center;
     background-size: cover;
     position: relative;
 
@@ -36,9 +38,10 @@ body {
     text-align: center;
 }
 .header h1 {
+    margin-top: -2px;
     font-size: 3rem;
     background-image: url(https://gvwire.com/wp-content/uploads/2020/10/wildfires.jpg);
-    background-size: cover;
+    /* background-size: cover; */
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
@@ -51,9 +54,40 @@ body {
     letter-spacing: 0.2px;
     color: white;
 }
+/**/
+.down-arrow {
+    position: absolute;
+    top: calc(100vh - 115px);
+    left: calc(50% - 14px);
+    width: 0;
+    height: 32.5px;
+    border: 2px solid #fff6;
+    border-radius: 2px;
+    animation: jumpInfinite 1.5s infinite;
+}
+.down-arrow::after {
+    content: " ";
+    position: absolute;
+    top: 12px;
+    left: -10px;
+    width: 16px;
+    height: 16px;
+    border-bottom: 4px solid #fff6;
+    border-right: 4px solid #fff6;
+    border-radius: 4px;
+    transform: rotateZ(45deg);
+}
+.fade {  /* fades upon scroll */
+    opacity: 0;
+    transition: 800ms all ease-in;
+}
+@keyframes jumpInfinite {
+    0%   { margin-top: 0; }
+    50% { margin-top: 20px; }
+    100% { margin-top: 0; }
+}
 
-
-
+/**/
 
 @media (min-width: 900px) {
     .header h1 {
@@ -102,30 +136,37 @@ body {
 
 /*----- Different markers for different data types -----*/
 
-.photo-marker {
-    background-image: url('./icons/picture-image-svgrepo-com.svg');  /* subject to change, obviously. */
-    background-size: cover;
-    background-color: white;
-    width: 50px;
-    height: 45px;
-    box-sizing: border-box;
-    border-radius: 5%;
+.marker {
     cursor: pointer;
+}
+.photo-marker {
+    width: 40px;
+    height: 35px;
+    /*background-image: url('./icons/picture-image-svgrepo-com.svg');*/  /* subject to change, obviously. */
+    /*background-image: url(./icons/icons8-picture-48.svg);*/
+    background-position: -4px -6px;
+
+    box-sizing: border-box;
 }
 .person-marker {
-    background-image: url('./icons/statue-of-liberty-svgrepo-com.svg'); /* subject to change, obviously. */
-    background-size: cover;
-    background-color: white;
     width: 50px;
     height: 50px;
+    /*background-image: url(./icons/statue-of-liberty-svgrepo-com.svg);*/ /* subject to change, obviously. */
+    background-size: cover;
+    /*background-color: white;*/
     border-radius: 50%;
-    cursor: pointer;
 }
 
 
 
 
-/*sidebar*/
+/* 
+ * sidebar 
+*/
+
+/* .show-sidebar {
+    left: 0 ;
+} */
 
 .sidenav {
     box-sizing: border-box;
