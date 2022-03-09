@@ -8,7 +8,7 @@
 
 
 :root {
-    --black: #080404;
+    --black: #070303;
 }
 
 body {
@@ -61,7 +61,7 @@ body {
     left: calc(50% - 14px);
     width: 0;
     height: 32.5px;
-    border: 2px solid #fff6;
+    border: 2px solid #fff5;
     border-radius: 2px;
     animation: jumpInfinite 1.5s infinite;
 }
@@ -72,8 +72,8 @@ body {
     left: -10px;
     width: 16px;
     height: 16px;
-    border-bottom: 4px solid #fff6;
-    border-right: 4px solid #fff6;
+    border-bottom: 4px solid #fff5;
+    border-right: 4px solid #fff5;
     border-radius: 4px;
     transform: rotateZ(45deg);
 }
@@ -134,30 +134,14 @@ body {
 }
 
 
-/*----- Different markers for different data types -----*/
+/*----- Marker -----*/
 
 .marker {
-    cursor: pointer;
-}
-.photo-marker {
     width: 40px;
-    height: 35px;
-    /*background-image: url('./icons/picture-image-svgrepo-com.svg');*/  /* subject to change, obviously. */
-    /*background-image: url(./icons/icons8-picture-48.svg);*/
-    background-position: -4px -6px;
-
-    box-sizing: border-box;
-}
-.person-marker {
-    width: 50px;
-    height: 50px;
-    /*background-image: url(./icons/statue-of-liberty-svgrepo-com.svg);*/ /* subject to change, obviously. */
+    height: 40px;
+    cursor: pointer;
     background-size: cover;
-    /*background-color: white;*/
-    border-radius: 50%;
 }
-
-
 
 
 /* 
