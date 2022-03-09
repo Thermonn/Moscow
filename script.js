@@ -30,6 +30,8 @@ map.on('load', () => {
   map.keyboard.disableRotation();
 });
 
+/* All the points that open a popup.
+ * Not necessarily same category!  */
 const moscowPopups = {
     "features": [
         {
@@ -51,7 +53,8 @@ const moscowPopups = {
         "properties": {
             "title": "Большой Театр",
             "image": "http://www.world-war.ru/wp-content/uploads/2015/06/271.jpg",
-            "description": "Маскируют Большой Театр (1941)"
+            "description": "Маскируют Большой Театр (1941)",
+            "hover": ""
         },
         "geometry": {
             "coordinates": [37.618541, 55.760239],
@@ -65,7 +68,7 @@ const moscowPopups = {
 
 /* All the points that open a sidebar.
  * Not necessarily same category!  */
-const moscowSidebar = {
+const moscowSidebars = {
     "type": "FeatureCollection",
     "features": [
       {
@@ -85,8 +88,25 @@ const moscowSidebar = {
           "coordinates": [37.50451326370, 55.73068665750]
         },
         "id": "VictoryMuseum"
-      }
-
+      },
+      {
+        "type": "Feature",
+        "properties": {},
+        "geometry": {
+          "type": "Point",
+          "coordinates": [37.50700235366821, 55.731698550554896]
+        },
+        "id": "VictoryMonument"
+      },
+      {
+        "type": "Feature",
+        "properties": {},
+        "geometry": {
+          "type": "Point",
+          "coordinates": [37.61616826057434, 55.754817688690295]
+        },
+        "id": "UnknownSoldier"
+      },
     ]
 };
 
@@ -97,16 +117,17 @@ const sidebars = document.querySelectorAll(".sidenav")
 for (const feature of moscowPopups.features) {
   // create a HTML element for each feature
   const el = document.createElement('div');
-  el.classList.add('marker', 'photo-marker');
+  el.classList.add('marker');
   el.setAttribute("title", `${feature.properties.hover}`)  // <- HOVER THING
    
   el.addEventListener("click", function() {
     for (let sbar of sidebars) {
       sbar.style.left = "-450px";  // close all sidebars
     }
+    
     map.easeTo({  // Fly to clicked marker 
       center: feature.geometry.coordinates, 
-      zoom: 11
+      zoom: (map.getZoom() < 11)? 11: map.getZoom()
     });
   }); 
   
@@ -123,20 +144,20 @@ for (const feature of moscowPopups.features) {
     .addTo(map);
 }
 
-for (const feature of moscowSidebar.features) {
+for (const feature of moscowSidebars.features) {
     const parent = document.getElementById(`${feature.id}`);  // ! the sidebar. This is why html id must be the same as geojson id.
     const el = document.createElement('div');
-    el.classList.add('marker', 'person-marker');
+    el.classList.add('marker');
 
     el.addEventListener("click", function() {
         for (let sbar of sidebars) {
           sbar.style.left = "-450px";  // close all sidebars
         }
         parent.style.left = "0";  // open specific sidebar
-
+        
         map.easeTo({  // Fly to clicked marker 
           center: feature.geometry.coordinates, 
-          zoom: 11
+          zoom: (map.getZoom() < 11)? 11: map.getZoom()  // if (current zoom < 11) set newZoom to 11, else keep old zoom
         });
     }); 
     
@@ -156,7 +177,7 @@ for (const XBtn of closeBtns) {
 }
 
 // Close sidebars on scroll (to avoid weird behaviour)
-window.addEventListener('scroll', function(e) {
+window.addEventListener('scroll', function() {
   for (let sbar of sidebars) {
     sbar.style.left = "-450px"; 
   }
