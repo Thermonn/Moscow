@@ -22,7 +22,8 @@ var map = new mapboxgl.Map({
     center: [37.618423, 55.751244],
     cooperativeGestures: true,
     zoom: 9,
-    minZoom: 6.5
+    minZoom: 6.5,
+    maxZoom: 20
 });
 
 map.on('load', () => {
@@ -40,6 +41,7 @@ const moscowPopups = {
             "title": "Парк Горького",
             "description": "Зенитные орудия в Парке Горького",
             "image": "http://www.world-war.ru/wp-content/uploads/2015/06/41.jpg",
+            "link": "#",
             "hover": ""
         },
         "geometry": {
@@ -54,6 +56,7 @@ const moscowPopups = {
             "title": "Большой Театр",
             "image": "http://www.world-war.ru/wp-content/uploads/2015/06/271.jpg",
             "description": "Маскируют Большой Театр (1941)",
+            "link": "",
             "hover": ""
         },
         "geometry": {
@@ -61,6 +64,51 @@ const moscowPopups = {
             "type": "Point"
         },
         "id": "a29a54372736b2a7ecf8cd556dc375f7"
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "title": "«Прощание славянки»",
+            "image": "https://upload.wikimedia.org/wikipedia/ru/thumb/f/ff/Памятник_«Прощание_славянки»_5.jpeg/468px-Памятник_«Прощание_славянки»_5.jpeg",
+            "description": "Памятник в честь марша «Прощание славянки»",
+            "link": "https://ru.wikipedia.org/wiki/Прощание_славянки_(памятник)",
+            "hover": "Адрес: площадь Тверская Застава, 7, стр. 1"
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [37.58125906545352, 55.776515670545436]
+          },
+          "id": "SlavGoodbye"
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "title": "Музей истории танка Т-34",
+            "image": "https://kudamoscow.ru/uploads/3ac45d6010ac2e4a74ace0d5d635d1c5.png",
+            "description": "Музейно-мемориальный комплекс расположен на 36-м километре Дмитровского шоссе – историческом танковом месте.",
+            "link": "http://museum-t-34.ru",
+            "hover": "Адрес: Дмитровское ш., д. 89А дер, Шолохово, Московская обл.\nЧасы работы: 10:00–18:00"
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [37.52959728240967, 56.055051902459155]
+          },
+          "id": "T34Museum"
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "title": "Музей обороны Москвы",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/5/55/Музей_обороны_2.jpg",
+            "description": "Государственный музей обороны Москвы — музей, посвящённый Московской битве, а также памяти защитников столицы.",
+            "link": "http://gmom.ru",
+            "hover": "Адрес: Мичуринский проспект, Олимпийская деревня, 3\nЧасы работы: 10:00–18:00"
+        },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [37.467273473739624, 55.676341230265706]
+          },
+          "id": "OboronyMuseum"
         }
     ],
     "type": "FeatureCollection"
@@ -73,7 +121,9 @@ const moscowSidebars = {
     "features": [
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "hover": "Адрес: Манежная пл., перед Историческим музеем."
+        },
         "geometry": {
           "type": "Point",
           "coordinates": [37.61683344841, 55.7558372575]
@@ -82,7 +132,9 @@ const moscowSidebars = {
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "hover": "Адрес: 121170, Москва, Площадь Победы, д. 3\nЧасы работы: с 10:00 до 20:00"
+        },
         "geometry": {
           "type": "Point",
           "coordinates": [37.50451326370, 55.73068665750]
@@ -91,22 +143,37 @@ const moscowSidebars = {
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "hover": "Адрес: Парк Победы, Поклонная гора\n7 минут пешком от метро Парк Победы"
+        },
         "geometry": {
           "type": "Point",
-          "coordinates": [37.50700235366821, 55.731698550554896]
+          "coordinates": [37.50701235366821, 55.731698550554896]
         },
         "id": "VictoryMonument"
       },
       {
         "type": "Feature",
-        "properties": {},
+        "properties": {
+          "hover": "Адрес: Александровский Сад, у стен Кремля\n5 минут пешком от метро Охотный ряд или Александровский сад"
+        },
         "geometry": {
           "type": "Point",
           "coordinates": [37.61616826057434, 55.754817688690295]
         },
         "id": "UnknownSoldier"
       },
+      {
+        "type": "Feature",
+        "properties": {
+          "hover": "Адрес: Минское ш., 55 км, Московская обл.\nЧасы работы: с 10:00 до 19:00"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [36.821558475494385, 55.57908456883291]
+        },
+        "id": "MemoryLaneMuseum"
+      }
     ]
 };
 
@@ -136,9 +203,9 @@ for (const feature of moscowPopups.features) {
     .setPopup(
     new mapboxgl.Popup({ offset: 25 }) // add popups
       .setHTML(
-        `<h3>${feature.properties.title}</h3>
-        <img src="${feature.properties.image}" class="hover-grow" style="max-width: 200px;"></img>
-        <p>${feature.properties.description}</p>`
+        `<a href="${feature.properties.link}" class="popup-link" target="_blank"><h3 class="popup-heading">${feature.properties.title}</h3></a>
+        <img src="${feature.properties.image}" class="popup-img"></img>
+        <p class="popup-text">${feature.properties.description}</p>`
       )
     )
     .addTo(map);
@@ -148,6 +215,7 @@ for (const feature of moscowSidebars.features) {
     const parent = document.getElementById(`${feature.id}`);  // ! the sidebar. This is why html id must be the same as geojson id.
     const el = document.createElement('div');
     el.classList.add('marker');
+    el.setAttribute("title", `${feature.properties.hover}`)
 
     el.addEventListener("click", function() {
         for (let sbar of sidebars) {
