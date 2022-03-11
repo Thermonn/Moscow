@@ -1,4 +1,7 @@
-/*  Typography  */
+/*------------------------*
+*------- MAIN PAGE -------*
+*-------------------------*/
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -13,6 +16,11 @@
 
 body {
     background-color: var(--black);
+    scroll-snap-type: y mandatory;
+
+}
+body > * {
+    scroll-snap-align: start;
 }
 
 
@@ -54,7 +62,8 @@ body {
     letter-spacing: 0.2px;
     color: white;
 }
-/**/
+
+/* Down-arrow */
 .down-arrow {
     position: absolute;
     top: calc(100vh - 115px);
@@ -87,7 +96,7 @@ body {
     100% { margin-top: 0; }
 }
 
-/**/
+/*--- Media ---*/
 
 @media (min-width: 900px) {
     .header h1 {
@@ -102,11 +111,9 @@ body {
 
 
 
-
-
-
-
-/* map */
+/*------------------------*
+*---------- MAP ----------*
+*-------------------------*/
 
 #map {
     position: absolute;
@@ -114,23 +121,6 @@ body {
     bottom: 0; 
     width: 100%; 
     margin: auto;
-}
-
-.mapboxgl-popup {
-    max-width: 300px;
-}
-.mapboxgl-popup-content {
-    text-align: center;
-    font-family: 'Poppins', sans-serif;
-}
-
-.hover-grow {
-    box-sizing: border-box;
-    transition-duration: 250ms;
-}
-.hover-grow:hover {
-    transform: scale(1.2);
-    border: 3px solid white;
 }
 
 
@@ -144,13 +134,46 @@ body {
 }
 
 
-/* 
- * sidebar 
-*/
+/*----- Popup -----*/
 
-/* .show-sidebar {
-    left: 0 ;
-} */
+.mapboxgl-popup {
+    width: fit-content;
+    max-width: 300px;
+    filter: drop-shadow(0 0 10px hsl(0, 0%, 11%));
+}
+.mapboxgl-popup-content {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.popup-link {
+    width: fit-content;
+    text-decoration: none;
+    color: hsl(240, 25%, 20%);
+    outline: 0;
+}
+.popup-link:hover {
+    color: hsl(240, 25%, 50%);
+}
+.popup-heading {
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+.popup-img {
+    /* background-size: cover; */
+    box-sizing: border-box;
+    max-width: 200px;
+    max-height: 150px !important;
+    margin: 5px -5px;
+    border: 1px dotted black;
+}
+.popup-text {
+    line-height: 1.4;
+}
+
+
+/*----- Sidebar -----*/
 
 .sidenav {
     box-sizing: border-box;
@@ -163,29 +186,60 @@ body {
     left: -450px;  /* !!! */
     background-color: #080404;
     overflow-x: hidden;
+    /* box-shadow: 0 0 1rem black; */ /* caused issues */
     transition: 0.5s;
     padding-top: 60px;
     color: white;
 }
+.sidenav h2 {
+    font-size: 1.7rem;
+    margin-bottom: 0.75rem;
+}
+.sidenav :is(h2, h3) {
+    line-height: 1.4;
+}
+
+.sidenav img {
+    max-width: 90%;
+    margin: 20px 0 10px;
+}
+.sidenav__img-wrapper {
+    display: flex;
+    gap: 8px;
+}
+.sidenav__img-wrapper > * {
+    width: 50%;
+    flex: 1 1 100%;
+}
+
+.sidenav p {
+    margin-top: 5px;
+}
 
 .sidenav a {
-    padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
+    color: white;
     transition: 0.3s;
-} 
+}
  .sidenav a:hover {
-    color: #f1f1f1;
+    color: #d2d0e0;
 } 
+
+.sidenav small {
+    color: rgba(255, 255, 255, 0.7);
+}
 
 .sidenav .closebtn {
     position: absolute;
     top: 0;
     right: 25px;
     font-size: 36px;
+    padding: 8px 8px 8px 32px;
     margin-left: 50px;
+    color: #818181;
+}
+.sidenav .closebtn:hover {
+    color: #f1f1f1;
 }
 
 #VictoryMuseum {
