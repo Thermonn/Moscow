@@ -109,6 +109,21 @@ const moscowPopups = {
             "coordinates": [37.467273473739624, 55.676341230265706]
           },
           "id": "OboronyMuseum"
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "title": "Центральный музей Вооруженных сил РФ",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Moscow_Armed_Forces_Museum.jpg/548px-Moscow_Armed_Forces_Museum.jpg",
+            "description": "Военно-исторический музей на улице Советской Армии. В его фондах и экспозиции насчитывается около 800 тысяч единиц хранения.",
+            "link": "http://cmaf.ru",
+            "hover": "Адрес: ул. Советской Армии, д. 2, стр. 1\nЧасы работы: 10:00–17:00"
+        },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [37.617085576057434, 55.7848841438147]
+          },
+          "id": "ArmedForcesMuseum"
         }
     ],
     "type": "FeatureCollection"
