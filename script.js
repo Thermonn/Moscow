@@ -29,6 +29,7 @@ var map = new mapboxgl.Map({
 map.on('load', () => {
   map.dragRotate.disable();
   map.keyboard.disableRotation();
+  map.addControl(new mapboxgl.NavigationControl());
 });
 
 /* All the points that open a popup.
