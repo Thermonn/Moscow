@@ -11,7 +11,6 @@ $(document).ready(function() {
   })
 });
 
-
 ///// Map /////
 
 mapboxgl.accessToken = 'pk.eyJ1IjoidGhlcm1vbiIsImEiOiJja3k3ODlka2cwenRxMnZxY3kxd21kMzUxIn0.ZmjbPpuvTNPCnUazKleUvw';
@@ -23,49 +22,23 @@ var map = new mapboxgl.Map({
     cooperativeGestures: true,
     zoom: 9,
     minZoom: 6.5,
-    maxZoom: 20
+    maxZoom: 20,
+    maxBounds: [[29.400100, 53.219191], [45.769520, 58.211138]]
 });
 
 map.on('load', () => {
   map.dragRotate.disable();
   map.keyboard.disableRotation();
-  map.addControl(new mapboxgl.NavigationControl());
+  const navControls = new mapboxgl.NavigationControl({
+    showCompass: false
+  });
+  map.addControl(navControls, 'bottom-right');
 });
 
 /* All the points that open a popup.
  * Not necessarily same category!  */
 const moscowPopups = {
     "features": [
-        {
-        "type": "Feature",
-        "properties": {
-            "title": "Парк Горького",
-            "description": "Зенитные орудия в Парке Горького",
-            "image": "http://www.world-war.ru/wp-content/uploads/2015/06/41.jpg",
-            "link": "#",
-            "hover": ""
-        },
-        "geometry": {
-            "coordinates": [37.600265, 55.727964],
-            "type": "Point"
-        },
-        "id": "346b45f8fad60c265d9d798d1dbdb18e"
-        },
-        {
-        "type": "Feature",
-        "properties": {
-            "title": "Большой Театр",
-            "image": "http://www.world-war.ru/wp-content/uploads/2015/06/271.jpg",
-            "description": "Маскируют Большой Театр (1941)",
-            "link": "",
-            "hover": ""
-        },
-        "geometry": {
-            "coordinates": [37.618541, 55.760239],
-            "type": "Point"
-        },
-        "id": "a29a54372736b2a7ecf8cd556dc375f7"
-        },
         {
           "type": "Feature",
           "properties": {
@@ -125,7 +98,22 @@ const moscowPopups = {
             "coordinates": [37.617085576057434, 55.7848841438147]
           },
           "id": "ArmedForcesMuseum"
-        }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "title": "Центральный музей Военно-воздушных сил",
+            "image": "https://vsemuzei.com/wp-content/uploads/2020/01/monino.jpeg",
+            "description": "Один из крупнейших музеев авиации в Европе, сохраняющий историю создания и развития военной авиации в России.",
+            "link": "https://cmvvs.ru",
+            "hover": "Адрес: Московская область, г.о. Щёлково, р.п. Монино, ул. Музейная, д.1\nЧасы работы: 09:00–18:00"
+        },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [38.18302631378174, 55.83290911147952]
+          },
+          "id": "AirForceMuseum"
+        },
     ],
     "type": "FeatureCollection"
 };
@@ -261,12 +249,13 @@ for (const XBtn of closeBtns) {
 }
 
 // Close sidebars on scroll (to avoid weird behaviour)
-window.addEventListener('scroll', function() {
-  for (let sbar of sidebars) {
-    sbar.style.left = "-450px"; 
+window.onscroll = function() {
+  if (!(window.innerHeight + window.pageYOffset >= document.body.offsetHeight)) {
+    for (let sbar of sidebars) {
+      sbar.style.left = "-450px"; 
+    }
   }
-});
-
+}
 
 
 ///// This thing down here uses layers and tilesets. Probably won't need
