@@ -1,0 +1,24 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.67514467239379,
+          55.92702627157517
+        ]
+      },
+      "id": "FederalCemetery"
+    }
+  ]
+}
+
+
+
+
+
+  
+    
