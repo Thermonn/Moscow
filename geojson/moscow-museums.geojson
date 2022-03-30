@@ -72,6 +72,18 @@
         ]
       },
       "id": "OboronyMuseum"
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.75160908699035,
+          55.79734901574534
+        ]
+      },
+      "id": "StalinsBunker"
     }
   ]
 }
