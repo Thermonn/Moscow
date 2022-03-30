@@ -49,10 +49,8 @@ body > * {
     text-align: center;
 }
 .header h1 {
-    margin-top: -2px;
     font-size: 3rem;
     background-image: url(https://gvwire.com/wp-content/uploads/2020/10/wildfires.jpg);
-    /* background-size: cover; */
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
@@ -113,7 +111,6 @@ body > * {
 }
 
 
-
 /*------------------------*
 *---------- MAP ----------*
 *-------------------------*/
@@ -123,14 +120,13 @@ body > * {
     top: 0; 
     bottom: 0; 
     width: 100%; 
-    margin: auto;
 }
 .mapboxgl-ctrl-bottom-right .mapboxgl-ctrl.mapboxgl-ctrl-group {
     margin-right: 15px !important;
 }
 .mapboxgl-ctrl-group button {
-    width: 33px !important;
-    height: 33px !important;
+    width: 35px !important;
+    height: 35px !important;
 }
 
 
@@ -170,7 +166,6 @@ body > * {
     margin-bottom: 4px;
 }
 .popup-img {
-    /* background-size: cover; */
     box-sizing: border-box;
     max-width: 200px;
     max-height: 150px !important;
@@ -195,7 +190,6 @@ body > * {
     z-index: 1;
     background-color: #080404;
     overflow-x: hidden;
-    /* box-shadow: 0 0 1rem black; */ /* caused issues */
     transition: 0.5s;
     padding-top: 60px;
     color: white;
@@ -223,7 +217,7 @@ body > * {
 }
 
 .sidenav p {
-    margin-top: 8px;
+    margin-top: 9px;
 }
 
 .sidenav a {
@@ -232,10 +226,10 @@ body > * {
     transition: 0.3s;
 }
 .sidenav a:hover {
-    color: #cdcae0;
+    color: #c9c6dd;
 } 
 .sidenav a:active {
-    color: #bfcddb;
+    color: #bbc9d8;
 }
 
 .sidenav small {
@@ -254,7 +248,3 @@ body > * {
 .sidenav .closebtn:hover {
     color: #f1f1f1;
 }
-/* 
-#VictoryMuseum {
-    background-color: tomato !important;
-} */
