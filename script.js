@@ -114,6 +114,36 @@ const moscowPopups = {
           },
           "id": "AirForceMuseum"
         },
+        {
+          "type": "Feature",
+          "properties": {
+            "title": "Федеральное военное мемориальное кладбище",
+            "image": "https://pp.userapi.com/c638617/v638617449/3c777/LKX3bZbwCbQ.jpg",
+            "description": "Кладбище предназначено для захоронения погибших защитников Отечества, выдающихся деятелей науки, культуры и других областей.",
+            "link": "https://вмкс.рф/fvmk/",
+            "hover": "Адрес: Осташковского ш. 4-й км вл. 2, Борисовка, Московская обл.\nВход с 10:00 до 18:00 по предъявлению паспорта"
+        },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [37.67514467239379, 55.92702627157517]
+          },
+          "id": "FederalCemetery"
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "title": "Обелиск «Москва — город герой»",
+            "image": "http://img.29palms.ru/photo/hotels/russia/moscow/moscow-hero-city/resized/003_Rossiya_Obelisk_Gorod-geroy_Moskva_Moscow_Hero_City_Monument_on_Ploschad_Dorogomilovskaya-Zastava_Dorogomilovskaya_Outpost_SquareFoto_fortsite-Deposit.jpg",
+            "description": "Московский монумент, открытый 9 мая 1977 года в память об обороне города в 1941-м году.",
+            "link": "https://ru.wikipedia.org/wiki/Городу-Герою_Москве",
+            "hover": "Адрес: площадь Дорогомиловская Застава, на пересечении Кутузовского проспекта и Большой Дорогомиловской улицы"
+        },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [37.555483281612396, 55.746774159975324]
+          },
+          "id": "MoscowHero"
+        }
     ],
     "type": "FeatureCollection"
 };
@@ -137,7 +167,7 @@ const moscowSidebars = {
       {
         "type": "Feature",
         "properties": {
-          "hover": "Адрес: 121170, Москва, Площадь Победы, д. 3\nЧасы работы: с 10:00 до 20:00"
+          "hover": "Адрес: Москва, Площадь Победы, д. 3\nЧасы работы: с 10:00 до 20:00"
         },
         "geometry": {
           "type": "Point",
@@ -170,13 +200,35 @@ const moscowSidebars = {
       {
         "type": "Feature",
         "properties": {
-          "hover": "Адрес: Минское ш., 55 км, Московская обл.\nЧасы работы: с 10:00 до 19:00"
+          "hover": "Адрес: Московская обл., Минское ш., 55 км\nЧасы работы: с 10:00 до 19:00"
         },
         "geometry": {
           "type": "Point",
           "coordinates": [36.821558475494385, 55.57908456883291]
         },
         "id": "MemoryLaneMuseum"
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "hover": "Адрес: Москва, ул. Советская, д.80, строение 1\nЧасы работы: с 10:00 до 18:00"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [37.75160908699035, 55.79734901574534]
+        },
+        "id": "StalinsBunker"
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "hover": "Адрес: Москва, Измайловский парк, аллея Большого Круга"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [37.75309771299362, 55.772339847900234]
+        },
+        "id": "ComplexMuzhestva"
       }
     ]
 };
@@ -205,7 +257,7 @@ for (const feature of moscowPopups.features) {
   new mapboxgl.Marker(el)
     .setLngLat(feature.geometry.coordinates)
     .setPopup(
-    new mapboxgl.Popup({ offset: 25 }) // add popups
+    new mapboxgl.Popup({ offset: 20 }) // add popups
       .setHTML(
         `<a href="${feature.properties.link}" class="popup-link" target="_blank"><h3 class="popup-heading">${feature.properties.title}</h3></a>
         <img src="${feature.properties.image}" class="popup-img"></img>
@@ -219,7 +271,7 @@ for (const feature of moscowSidebars.features) {
     const parent = document.getElementById(`${feature.id}`);  // ! the sidebar. This is why html id must be the same as geojson id.
     const el = document.createElement('div');
     el.classList.add('marker');
-    el.setAttribute("title", `${feature.properties.hover}`)
+    el.setAttribute("title", `${feature.properties.hover}`)  // <- HOVER THING
 
     el.addEventListener("click", function() {
         for (let sbar of sidebars) {
@@ -256,22 +308,3 @@ window.onscroll = function() {
     }
   }
 }
-
-
-///// This thing down here uses layers and tilesets. Probably won't need
-// map.on('click', (event) => {
-// const features = map.queryRenderedFeatures(event.point, {
-//     layers: ['moscow-points']
-// });
-// if (!features.length) {
-//     return;
-// }
-// const feature = features[0];
-
-// const popup = new mapboxgl.Popup({ offset: [0, -15] })
-// .setLngLat(feature.geometry.coordinates)
-// .setHTML(
-//     `<img style="max-width: 100%;" src="${feature.properties.image}"></img><p style="color: black;">${feature.properties.description}</p>`
-// )
-// .addTo(map);
-// });
