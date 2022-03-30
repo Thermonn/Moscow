@@ -48,6 +48,30 @@
           ]
         },
         "id": "VictoryMonument"
+      },
+      {
+        "type": "Feature",
+        "properties": {},
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            37.555483281612396,
+            55.746774159975324
+          ]
+        },
+        "id": "MoscowHero"
+      },
+      {
+        "type": "Feature",
+        "properties": {},
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            37.75309771299362,
+            55.772339847900234
+          ]
+        },
+        "id": "ComplexMuzhestva"
       }
     ]
   }
